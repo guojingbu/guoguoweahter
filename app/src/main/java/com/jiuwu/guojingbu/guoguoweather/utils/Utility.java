@@ -78,14 +78,14 @@ public class Utility {
     /**
      * 解析处理服务器返回的县区数据
      *
-     * @param respone
+     * @param response
      * @param cityId
      * @return
      */
-    public static boolean handleCountyResponse(String respone, int cityId) {
-        if (!TextUtils.isEmpty(respone)) {
+    public static boolean handleCountyResponse(String response, int cityId) {
+        if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray allCountys = new JSONArray(respone);
+                JSONArray allCountys = new JSONArray(response);
                 for (int i = 0; i < allCountys.length(); i++) {
                     JSONObject countyObj = allCountys.getJSONObject(i);
                     County county = new County();
@@ -94,6 +94,7 @@ public class Utility {
                     county.setCityId(cityId);
                     county.save();
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
